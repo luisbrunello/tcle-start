@@ -22,7 +22,7 @@
 
   function go(){
     var startISO = new Date().toISOString();
-    var url = FORM_URL + '&' + ENTRY_START + '=' + encodeURIComponent(startISO);
+    var url = FORM_URL + '&' + ENTRY_START + '=' + encodeURIComponent(startISO); 
     document.getElementById('msg').textContent = 'Redirecionando...';
     location.replace(url);
   }
