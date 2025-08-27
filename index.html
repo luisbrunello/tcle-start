@@ -1,0 +1,35 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Início do Questionário</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center}
+  .card{max-width:640px;margin:24px;padding:24px;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 6px 18px rgba(0,0,0,.06);text-align:center}
+  button{font-size:18px;padding:12px 18px;border-radius:12px;border:0;cursor:pointer}
+</style>
+<div class="card">
+  <h1>Questionário</h1>
+  <p>Clique em <b>Começar</b> para iniciar. Registraremos automaticamente o horário de início.</p>
+  <button id="go">Começar</button>
+  <p id="msg" style="opacity:.7;margin-top:8px"></p>
+</div>
+<script>
+(function(){
+  // >>>>> TROQUE ESTES DOIS VALORES <<<<<
+  var FORM_URL   = 'https://docs.google.com/forms/d/1ykvHS5-16fL9RmNOzW5ycIa2O4syjeS5Lwj66iXbRsQ';
+  var ENTRY_START = 'entry.2136877681'; // ID do campo "Início (ISO)…"
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  function go(){
+    var startISO = new Date().toISOString();
+    var url = FORM_URL + '&' + ENTRY_START + '=' + encodeURIComponent(startISO);
+    document.getElementById('msg').textContent = 'Redirecionando...';
+    location.replace(url);
+  }
+  document.getElementById('go').addEventListener('click', go);
+
+  // redireciono automaticamente após 1s (útil para QR Code); com botão como fallback
+  setTimeout(go, 1000);
+})();
+</script>
+<noscript>Ative o JavaScript para continuar.</noscript>
